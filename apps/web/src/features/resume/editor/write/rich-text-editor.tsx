@@ -24,6 +24,7 @@ import {
 import { Icon } from "@reactive-resume/ui/components/icon";
 import { useKeyboardInset } from "@reactive-resume/ui/hooks/use-keyboard-inset";
 import { useIsMobile } from "@reactive-resume/ui/hooks/use-mobile";
+import { stripEdgeEmptyBlocks } from "@reactive-resume/utils/string";
 import { cn } from "@reactive-resume/utils/style";
 import { ImprovePanel, lineAtCaret } from "./improve";
 import { hasUnsupportedTableMarkup, richTextExtensions } from "@/components/input/rich-text-extensions";
@@ -220,7 +221,8 @@ export function RichTextEditor({
 				),
 			},
 		},
-		onUpdate: ({ editor }) => onChange(editor.getHTML()),
+		// The editor keeps an empty paragraph after a list; it holds no text but prints as blank space.
+		onUpdate: ({ editor }) => onChange(stripEdgeEmptyBlocks(editor.getHTML())),
 	});
 
 	const state = useEditorState({
@@ -239,7 +241,9 @@ export function RichTextEditor({
 
 	// Undo, the page and the assistant change the text from outside; keep the editor in step.
 	useEffect(() => {
-		if (!editor || editor.getHTML() === value) return;
+		if (!editor) return;
+		// Compare the saved form, so the empty block the editor keeps never rewrites the text.
+		if (stripEdgeEmptyBlocks(editor.getHTML()) === value) return;
 		editor.commands.setContent(value, { emitUpdate: false });
 	}, [editor, value]);
 

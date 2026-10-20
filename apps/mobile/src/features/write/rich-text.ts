@@ -5,19 +5,15 @@
 // baseline. Reports that equal the baseline, or arrive while the field isn't focused, never write, so untouched
 // fields keep their original HTML byte for byte.
 
+import { stripEdgeEmptyBlocks } from "@reactive-resume/utils/string";
+
 /** Converts the editor's `<html>\n<p>…</p>\n</html>` into the resume's HTML: no wrapper, no newlines, "" when empty. */
 export function fromEnrichedHtml(html: string): string {
 	let body = html.trim();
 	if (body.startsWith("<html>")) body = body.slice(6);
 	if (body.endsWith("</html>")) body = body.slice(0, -7);
-	return (
-		body
-			.replaceAll(/>\s*\n\s*</g, "><")
-			.trim()
-			// Empty lines at the ends would print as blank space under the entry.
-			.replace(/^(?:<br\s*\/?>|<p>\s*<\/p>)+/, "")
-			.replace(/(?:<br\s*\/?>|<p>\s*<\/p>)+$/, "")
-	);
+	// Empty lines at the ends would print as blank space under the entry.
+	return stripEdgeEmptyBlocks(body.replaceAll(/>\s*\n\s*</g, "><").trim());
 }
 
 // The editor's own tag set. Anything else is unwrapped to its text when the editor loads it.

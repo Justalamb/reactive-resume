@@ -79,3 +79,19 @@ export function stripHtml(html: string | undefined): string {
 	if (!html) return "";
 	return html.replace(/<[^>]*>/g, "").trim();
 }
+
+// An empty block holds no text: it prints as blank space, so one left at the end of a field makes the
+// row it belongs to taller than its neighbours. Editors leave them behind when the caret leaves a list.
+const EMPTY_EDGE_BLOCK = "(?:<br\\s*/?>|<p\\b[^>]*>\\s*</p>)+";
+
+/**
+ * Removes the empty blocks at both edges of a rich-text fragment.
+ * @param html - The HTML string to clean.
+ * @returns The HTML without its leading or trailing empty blocks.
+ */
+export function stripEdgeEmptyBlocks(html: string): string {
+	if (!html) return html;
+	return html
+		.replace(new RegExp(`^${EMPTY_EDGE_BLOCK}`, "i"), "")
+		.replace(new RegExp(`${EMPTY_EDGE_BLOCK}\\s*$`, "i"), "");
+}

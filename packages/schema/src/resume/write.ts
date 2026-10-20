@@ -2,6 +2,7 @@ import type { ResumeData } from "./data";
 import z from "zod";
 import { resumeDataSchema } from "./data";
 import { createResumeDataJsonSchema } from "./json-schema";
+import { normalizeRichTextFields } from "./rich-text";
 
 const publishedInputSchema = z.fromJSONSchema(createResumeDataJsonSchema());
 
@@ -31,7 +32,8 @@ export const writableResumeDataSchema = z.transform<z.input<typeof resumeDataSch
 	}
 
 	// Use the canonical result so JSON Schema conversion cannot strip compatible extra data.
-	return canonical.data;
+	// Rich text is cleaned on the way in: an empty block at the edge of a field prints as blank space.
+	return normalizeRichTextFields(canonical.data);
 });
 
 export const parseResumeDataForWrite = (data: unknown): ResumeData => writableResumeDataSchema.parse(data);

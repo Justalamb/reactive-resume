@@ -1,6 +1,7 @@
 import z from "zod";
 import { templateSchema } from "../templates";
 import { dateFormatSchema, resumeDatesSchema, syncResumeDates, upgradeResumeDates } from "./dates";
+import { normalizeRichTextFields } from "./rich-text";
 import { semanticStylesheetSchema } from "./stylesheet";
 
 const iconSchema = z
@@ -787,7 +788,8 @@ export const parseResumeData = (data: unknown): ResumeData => {
 	for (const section of parsed.customSections) section.showHeading ??= true;
 	upgradeResumeDates(parsed);
 	syncResumeDates(parsed);
-	return parsed;
+	// Rich text is cleaned on read too, so resumes stored before the fix print without their blank edges.
+	return normalizeRichTextFields(parsed);
 };
 
 export type LayoutPage = z.infer<typeof pageLayoutSchema>;

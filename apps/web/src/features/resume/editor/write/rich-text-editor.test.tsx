@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { expect, it, vi } from "vitest";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
+import { useState } from "react";
 import { RichTextEditor } from "./rich-text-editor";
 
 const mocks = vi.hoisted(() => ({ mobile: false }));
@@ -47,3 +48,43 @@ it.each([false, true])(
 		expect(screen.queryByRole("toolbar")).toBeNull();
 	},
 );
+
+it("keeps the empty block the editor holds out of the saved text", async () => {
+	i18n.load("en", {});
+	i18n.activate("en");
+	const onChange = vi.fn();
+
+	// The editor holds an empty paragraph after the list, the way it does after the caret leaves a list.
+	function Harness() {
+		const [value, setValue] = useState("<ul><li>Node / Bun</li></ul><p></p>");
+		return (
+			<RichTextEditor
+				label="Summary"
+				value={value}
+				onChange={(html) => {
+					setValue(html);
+					onChange(html);
+				}}
+			/>
+		);
+	}
+
+	render(
+		<I18nProvider i18n={i18n}>
+			<Harness />
+		</I18nProvider>,
+	);
+
+	const editor = await screen.findByRole("textbox", { name: "Summary" });
+	await act(async () => {
+		editor.focus();
+	});
+	await userEvent.click(editor);
+	// Move the caret out of the list into the empty paragraph that follows it.
+	await userEvent.keyboard("{ArrowDown}");
+	await userEvent.keyboard(" ");
+
+	expect(onChange).toHaveBeenCalled();
+	const saved = onChange.mock.calls.at(-1)?.[0];
+	expect(saved).toBe("<ul><li><p>Node / Bun</p></li></ul>");
+});

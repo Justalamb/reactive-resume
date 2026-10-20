@@ -63,4 +63,43 @@ describe("writableResumeDataSchema", () => {
 		};
 		expect(writableResumeDataSchema.safeParse(data).success).toBe(false);
 	});
+
+	it("cleans the empty blocks at the edges of every rich-text field", () => {
+		const data = {
+			...sampleResumeData,
+			summary: { ...sampleResumeData.summary, content: "<p>Summary</p><p></p>" },
+			sections: {
+				...sampleResumeData.sections,
+				experience: {
+					...sampleResumeData.sections.experience,
+					items: [
+						{
+							...sampleResumeData.sections.experience.items[0],
+							description: "<p>Work</p><p></p>",
+						},
+					],
+				},
+			},
+			customSections: [
+				{
+					id: "custom-summary",
+					type: "summary",
+					title: "Skills",
+					icon: "compass-tool",
+					columns: 1,
+					hidden: false,
+					showHeading: true,
+					keepTogether: false,
+					startOnNewPage: false,
+					items: [{ id: "item-1", hidden: false, content: "<ul><li>Node</li></ul><p></p>" }],
+				},
+			],
+		};
+
+		const parsed = parseResumeDataForWrite(data);
+		expect(parsed.summary.content).toBe("<p>Summary</p>");
+		expect(parsed.sections.experience.items[0]?.description).toBe("<p>Work</p>");
+		const [customSection] = parsed.customSections;
+		expect(customSection?.items[0]).toMatchObject({ content: "<ul><li>Node</li></ul>" });
+	});
 });

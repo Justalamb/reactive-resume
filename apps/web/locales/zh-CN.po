@@ -9292,6 +9292,10 @@ msgstr "重置密码"
 msgid "Resetting your password..."
 msgstr "正在重置你的密码…"
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "资源"

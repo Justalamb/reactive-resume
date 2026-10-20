@@ -35,6 +35,7 @@ import {
 import { useLetterWebMcpTools } from "@/features/letters/webmcp";
 import { usePreviewPausedStore } from "@/features/resume/builder/draft";
 import { useIsLandscape } from "@/features/resume/editor/chrome";
+import { PanelResizeHandle, useEditorPanelWidth } from "@/features/resume/editor/panel-width";
 import { useEditorStore } from "@/features/resume/editor/store";
 import { switchModeInstantly } from "@/libs/motion";
 
@@ -57,6 +58,7 @@ export function LetterShell() {
 	const assistantPlace = assistantPlaceFor(breakpoint);
 	const assistantColumn = assistantPlace === "column" && !pinned;
 	const assistantReplaces = assistantPlace === "replace" && assistantOpen;
+	const panel = useEditorPanelWidth();
 
 	// Zoom, open sheets and the History version belong to one document.
 	useEffect(() => resetEditor, [resetEditor]);
@@ -89,6 +91,9 @@ export function LetterShell() {
 									: "var(--editor-panel) minmax(0,1fr)",
 						}}
 					>
+						{!pinned && !assistantReplaces && !(assistantColumn && assistantOpen) && (
+							<PanelResizeHandle handleProps={panel.handleProps} />
+						)}
 						<AssistantReplace
 							replaced={assistantReplaces}
 							assistant={

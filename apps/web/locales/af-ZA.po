@@ -9292,6 +9292,10 @@ msgstr "Herstel jou wagwoord"
 msgid "Resetting your password..."
 msgstr "Besig om jou wagwoord te herstel..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "Hulpbronne"

@@ -9292,6 +9292,10 @@ msgstr "Tetapkan semula kata laluan anda"
 msgid "Resetting your password..."
 msgstr "Menetapkan semula kata laluan anda..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "Sumber"

@@ -9292,6 +9292,10 @@ msgstr "Restableix la contrasenya"
 msgid "Resetting your password..."
 msgstr "S’està restablint la contrasenya..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "Recursos"

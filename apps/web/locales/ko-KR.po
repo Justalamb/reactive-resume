@@ -9292,6 +9292,10 @@ msgstr "비밀번호 재설정"
 msgid "Resetting your password..."
 msgstr "비밀번호를 재설정하는 중입니다..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "리소스"

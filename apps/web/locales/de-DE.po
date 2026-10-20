@@ -9292,6 +9292,10 @@ msgstr "Setzen Sie Ihr Passwort zurück"
 msgid "Resetting your password..."
 msgstr "Ihr Passwort wird zurückgesetzt..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "Ressourcen"

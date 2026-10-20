@@ -9296,6 +9296,10 @@ msgstr "ଆପଣଙ୍କ ପାସୱାର୍ଡ ରିସେଟ୍ କରନ
 msgid "Resetting your password..."
 msgstr "ଆପଣଙ୍କ ପାସୱାର୍ଡ ରିସେଟ୍ ହେଉଛି..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "ସମ୍ପଦ"

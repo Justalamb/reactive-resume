@@ -9292,6 +9292,10 @@ msgstr "Reimposta la tua password"
 msgid "Resetting your password..."
 msgstr "Reimpostazione della tua password in corso..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "Risorse"

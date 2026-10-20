@@ -27,6 +27,7 @@ import { openAssistantFrom } from "@/features/assistant/open";
 import { usePreviewPausedStore } from "@/features/resume/builder/draft";
 import { IssueStepper } from "@/features/resume/editor/check/page-layer";
 import { useIsLandscape } from "@/features/resume/editor/chrome";
+import { PanelResizeHandle, useEditorPanelWidth } from "@/features/resume/editor/panel-width";
 import { useEditorStore } from "@/features/resume/editor/store";
 import { useEditorMode } from "@/features/resume/editor/use-editor-mode";
 import { useResumeWebMcpTools } from "@/features/resume/editor/webmcp";
@@ -149,6 +150,11 @@ function DesktopBody({ mode, assistant, narrow }: DesktopBodyProps) {
 	const assistantOpen = useEditorStore((state) => state.assistantOpen);
 	const assistantInstant = useEditorStore((state) => state.assistantInstant);
 	const replaced = assistant === "replace" && assistantOpen;
+	const panel = useEditorPanelWidth();
+
+	// The panel has a fixed width when it is pinned on a tablet, when the assistant's own column takes its place, or
+	// when the assistant has replaced it.
+	const resizable = !narrow && !replaced && !(assistant === "column" && assistantOpen);
 
 	return (
 		<div
@@ -162,6 +168,7 @@ function DesktopBody({ mode, assistant, narrow }: DesktopBodyProps) {
 							: "var(--editor-panel) minmax(0,1fr)",
 			}}
 		>
+			{resizable && <PanelResizeHandle handleProps={panel.handleProps} />}
 			<AssistantReplace
 				replaced={replaced}
 				assistant={

@@ -9292,6 +9292,10 @@ msgstr "កំណត់​ពាក្យសម្ងាត់​របស់​
 msgid "Resetting your password..."
 msgstr "កំពុង​កំណត់​ពាក្យសម្ងាត់​របស់​អ្នក​ឡើងវិញ..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "ធនធាន"

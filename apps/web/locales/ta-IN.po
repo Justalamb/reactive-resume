@@ -9292,6 +9292,10 @@ msgstr "உங்கள் கடவுச்சொல்லை மீட்ட�
 msgid "Resetting your password..."
 msgstr "உங்கள் கடவுச்சொல்லை மீட்டமைத்து கொண்டிருக்கிறது..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "வளங்கள்"

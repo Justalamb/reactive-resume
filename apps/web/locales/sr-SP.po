@@ -9292,6 +9292,10 @@ msgstr "Ресетујте своју лозинку"
 msgid "Resetting your password..."
 msgstr "Ресетовање ваше лозинке..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "Ресурси"

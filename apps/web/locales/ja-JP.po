@@ -9292,6 +9292,10 @@ msgstr "パスワードをリセット"
 msgid "Resetting your password..."
 msgstr "パスワードをリセットしています..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "リソース"

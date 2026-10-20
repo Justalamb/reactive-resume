@@ -9292,6 +9292,10 @@ msgstr "Obnovte své heslo"
 msgid "Resetting your password..."
 msgstr "Obnovování hesla…"
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "Zdroje"

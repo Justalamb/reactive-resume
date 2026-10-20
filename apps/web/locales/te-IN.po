@@ -9292,6 +9292,10 @@ msgstr "మీ పాస్‌వర్డ్‌ను రీసెట్ చే
 msgid "Resetting your password..."
 msgstr "మీ పాస్‌వర్డ్‌ను రీసెట్ చేస్తున్నాము..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "వనరులు"

@@ -9292,6 +9292,10 @@ msgstr "Đặt lại mật khẩu"
 msgid "Resetting your password..."
 msgstr "Đang đặt lại mật khẩu..."
 
+#: src/features/resume/editor/panel-width.tsx
+msgid "Resize the editing panel"
+msgstr ""
+
 #: src/features/homepage/footer.tsx
 msgid "Resources"
 msgstr "Tài nguyên"
